@@ -4,20 +4,20 @@ import { Globe } from "lucide-react"
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 
 export function VersionSwitcher() {
-  return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <SidebarMenuButton size="lg" className="bg-sidebar-accent text-sidebar-accent-foreground">
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-            <Globe className="size-4" />
-          </div>
-          <div className="flex flex-col gap-0.5 leading-none">
-            <span className="font-semibold">Health Data AI</span>
-            <span className="text-gray-600">Ghana</span>
-          </div>
-        </SidebarMenuButton>
-      </SidebarMenuItem>
-    </SidebarMenu>
-  )
+    return (
+        <SidebarMenu>
+            <SidebarMenuItem>
+                <SidebarMenuButton size="lg" className="bg-sidebar-accent text-sidebar-accent-foreground">
+                    <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                        <Globe className="size-4" />
+                    </div>
+                    <div className="flex flex-col gap-0.5 leading-none">
+                        <span className="font-semibold">Health Data AI</span>
+                        <span className="text-gray-600">Ghana</span>
+                    </div>
+                </SidebarMenuButton>
+            </SidebarMenuItem>
+        </SidebarMenu>
+    )
 }
 

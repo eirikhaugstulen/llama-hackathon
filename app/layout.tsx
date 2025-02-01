@@ -5,32 +5,32 @@ import "./globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Health Data AI Dashboard",
-  description: "Health data analytics and visualization platform",
+    title: "Health Data AI Dashboard",
+    description: "Health data analytics and visualization platform",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" className="h-full">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
-        <SidebarProvider defaultOpen>
-          {children}
-        </SidebarProvider>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" className="h-full">
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
+                <SidebarProvider defaultOpen>
+                    {children}
+                </SidebarProvider>
+            </body>
+        </html>
+    );
 }

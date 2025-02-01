@@ -9,7 +9,6 @@ type Props = {
 
 export default function NewChatHandler({ id }: Props) {
     const onSubmit = async (question: string) => {
-        console.log(question)
         redirect(`/analytics/${id}?query=${question}`)
     }
 

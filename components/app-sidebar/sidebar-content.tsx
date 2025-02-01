@@ -8,10 +8,10 @@ interface SidebarContentProps {
 }
 
 export function SidebarContent({ children }: SidebarContentProps) {
-  return (
-    <SidebarInset>
-      <ContentHeader />
-      {children}
-    </SidebarInset>
-  )
+    return (
+        <SidebarInset>
+            <ContentHeader />
+            {children}
+        </SidebarInset>
+    )
 } 

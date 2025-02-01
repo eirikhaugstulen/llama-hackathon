@@ -3,12 +3,12 @@ import { SidebarContent } from "@/components/app-sidebar/sidebar-content"
 import { SidebarProvider } from "@/components/ui/sidebar"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarContent>
-        {children}
-      </SidebarContent>
-    </SidebarProvider>
-  )
+    return (
+        <SidebarProvider>
+            <AppSidebar />
+            <SidebarContent>
+                {children}
+            </SidebarContent>
+        </SidebarProvider>
+    )
 }
