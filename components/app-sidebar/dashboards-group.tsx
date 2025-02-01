@@ -1,3 +1,5 @@
+"use client"
+
 import { LayoutDashboard } from "lucide-react"
 import {
   SidebarGroup,
@@ -7,8 +9,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { usePathname } from "next/navigation"
 
 export function DashboardsGroup() {
+  const pathname = usePathname()
+
+  const activePage = pathname.split("/")[1]
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>
@@ -18,12 +25,12 @@ export function DashboardsGroup() {
       <SidebarGroupContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild isActive={true}>
+            <SidebarMenuButton asChild isActive={activePage === "dashboard"}>
               <a href="/dashboard">Overview</a>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton asChild isActive={activePage === "analytics"}>
               <a href="/analytics">Analytics</a>
             </SidebarMenuButton>
           </SidebarMenuItem>
