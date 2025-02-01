@@ -21,7 +21,6 @@ export async function login(formData: FormData) {
     const parsedData = schema.safeParse(data)
 
     if (!parsedData.success) {
-        console.log(parsedData.error)
         redirect('/login?error=invalid_data')
     }
 
