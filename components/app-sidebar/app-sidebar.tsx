@@ -15,7 +15,7 @@ import { RecentCreationsGroup } from "./recent-creations-group"
 import { DashboardsGroup } from "./dashboards-group"
 import { SidebarFooter } from "./sidebar-footer"
 
-export function AppSidebar({ className, ...props }: React.ComponentProps<typeof Sidebar>) {
+export async function AppSidebar({ className, ...props }: React.ComponentProps<typeof Sidebar>) { 
     return (
         <Sidebar className={className} {...props}>
             <SidebarHeader className="border-b border-border/50 px-2 py-2">
@@ -26,7 +26,7 @@ export function AppSidebar({ className, ...props }: React.ComponentProps<typeof 
                                 <Globe className="size-4" />
                             </div>
                             <div className="flex flex-col gap-0.5 text-left leading-none">
-                                <span className="font-medium">Health Data AI</span>
+                                <span className="font-medium">Health AI</span>
                                 <span className="text-xs text-muted-foreground">Ghana</span>
                             </div>
                         </SidebarMenuButton>
@@ -38,7 +38,6 @@ export function AppSidebar({ className, ...props }: React.ComponentProps<typeof 
             </SidebarHeader>
             <SidebarContent>
                 <DashboardsGroup />
-
                 <RecentCreationsGroup />
             </SidebarContent>
             <SidebarFooter />
