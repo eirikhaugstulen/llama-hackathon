@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar"
 import { RecentCreationsGroup } from "./recent-creations-group"
 import { DashboardsGroup } from "./dashboards-group"
+import { SidebarFooter } from "./sidebar-footer"
 
 export function AppSidebar({ className, ...props }: React.ComponentProps<typeof Sidebar>) {
     return (
@@ -40,6 +41,7 @@ export function AppSidebar({ className, ...props }: React.ComponentProps<typeof 
 
                 <RecentCreationsGroup />
             </SidebarContent>
+            <SidebarFooter />
             <SidebarRail />
         </Sidebar>
     )

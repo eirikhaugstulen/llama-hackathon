@@ -4,25 +4,35 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
+import { z } from 'zod'
 
 export async function login(formData: FormData) {
     const supabase = await createClient()
 
-    // type-casting here for convenience
-    // in practice, you should validate your inputs
+    const schema = z.object({
+        email: z.string().email(),
+        password: z.string(),
+    })
     const data = {
-        email: formData.get('email') as string,
-        password: formData.get('password') as string,
+        email: formData.get('email'),
+        password: formData.get('password'),
     }
 
-    const { error } = await supabase.auth.signInWithPassword(data)
+    const parsedData = schema.safeParse(data)
+
+    if (!parsedData.success) {
+        console.log(parsedData.error)
+        redirect('/login?error=invalid_data')
+    }
+
+    const { error } = await supabase.auth.signInWithPassword(parsedData.data)
 
     if (error) {
         redirect('/error')
     }
 
-    revalidatePath('/', 'layout')
-    redirect('/')
+    revalidatePath('/dashboard', 'layout')
+    redirect('/dashboard')
 }
 
 export async function signup(formData: FormData) {
@@ -42,5 +52,11 @@ export async function signup(formData: FormData) {
     }
 
     revalidatePath('/', 'layout')
+    redirect('/')
+}
+
+export async function logout() {
+    const supabase = await createClient()
+    await supabase.auth.signOut()
     redirect('/')
 }
