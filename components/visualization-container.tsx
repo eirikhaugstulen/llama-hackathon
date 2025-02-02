@@ -4,6 +4,7 @@ import { FollowUpChat } from "@/components/follow-up-chat"
 import { useState } from "react"
 
 export interface VisualizationData {
+    summary: string
     dataItems: string[]
     periods: string[]
     orgUnits: string[]
@@ -16,6 +17,7 @@ export function VisualizationContainer() {
         <div className="w-full grid grid-cols-10 gap-4">
             <div className="col-span-10 lg:col-span-4 2xl:col-span-6">
                 <DHIS2Chart
+                    summary={visualizationData?.summary || ''}
                     dataItems={visualizationData?.dataItems || []}
                     periods={visualizationData?.periods || []}
                     orgUnits={visualizationData?.orgUnits || []}

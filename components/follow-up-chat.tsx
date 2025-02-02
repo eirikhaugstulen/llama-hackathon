@@ -42,9 +42,10 @@ export function FollowUpChat({
                     const latestToolCall = updateDataItemsToolCall[updateDataItemsToolCall.length - 1]
                     
                     if (latestToolCall.result) {
-                        const { indicators, periods, orgUnits } = latestToolCall.result.data
+                        const { summary, indicators, periods, orgUnits } = latestToolCall.result.data
 
                         setVisualizationData({
+                            summary,
                             dataItems: indicators,
                             periods,
                             orgUnits,

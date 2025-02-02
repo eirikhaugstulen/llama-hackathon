@@ -1,7 +1,13 @@
 import { systemPrompt } from '@/prompts/system/main-prompt';
 import { createClient } from '@/utils/supabase/server';
 import { openai } from '@ai-sdk/openai';
-import { createDataStreamResponse, embedMany, generateObject, streamText, tool } from 'ai';
+import {
+    createDataStreamResponse,
+    embedMany,
+    generateObject,
+    streamText,
+    tool
+} from 'ai';
 import { z } from 'zod';
 
 const getIndicators = async (dataItems: string[]) => {
@@ -53,6 +59,7 @@ const tools = {
     updateDataItems: tool({
         description: 'Update the data items for the given visualization',
         parameters: z.object({
+            summary: z.string().describe('A brief high level summary of the user intent'),
             restart: z.boolean().default(false).describe('If true, all data items, periods, and org units will be cleared.'),
             dataItems: z
                 .string()
@@ -70,16 +77,17 @@ const tools = {
                 .optional()
                 .describe('An array of org units in natural language. For example: "Ghana", "Korle Bu Teaching Hospital", "Ashanti Region".'),
         }),
-        execute: async ({ dataItems, periods, orgUnits }) => {
+        execute: async ({ summary, dataItems, periods, orgUnits }) => {
             const apiIndicators = dataItems ? await getIndicators(dataItems) : [];
             const apiPeriods = periods ? await getPeriod(periods) : [];
             const apiOrgUnits = orgUnits ? await getOrgUnits(orgUnits) : [];
 
-            console.log(apiIndicators, apiPeriods, apiOrgUnits)
+            console.log(summary, apiIndicators, apiPeriods, apiOrgUnits)
 
             return {
                 modelResponse: 'Data fetched successfully and have been rendered to the user. Please continue with the next step. DO NOT CALL THE TOOL AGAIN.',
                 data: {
+                    summary,
                     indicators: apiIndicators,
                     periods: apiPeriods,
                     orgUnits: apiOrgUnits,

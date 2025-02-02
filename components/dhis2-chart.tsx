@@ -4,9 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "./ui/button"
 import { ChartContent } from "./chart-content"
 import { useMemo, memo } from "react"
-import { useChartConfig } from "@/hooks/use-chart-config"
 
 interface DHIS2ChartProps {
+  summary: string
   dataItems: string[]
   periods: string[]
   orgUnits: string[]
@@ -18,20 +18,14 @@ const PageModes = {
     COMPLETE: "COMPLETE",
 } as const
 
-export const DHIS2Chart = memo(function DHIS2Chart({ dataItems, periods, orgUnits }: DHIS2ChartProps) {
-    const { chartConfig } = useChartConfig({
-        dataItems,
-        periods,
-        orgUnits,
-    })
-    
+export const DHIS2Chart = memo(function DHIS2Chart({ summary, dataItems, periods, orgUnits }: DHIS2ChartProps) {
     const pageMode = useMemo(() => {
-        if (dataItems.length === 0 || periods.length === 0 || orgUnits.length === 0 || !chartConfig) {
+        if (dataItems.length === 0 || periods.length === 0 || orgUnits.length === 0 || summary === '') {
             return PageModes.DEFAULT;
         }
 
         return PageModes.COMPLETE;
-    }, [dataItems, periods, orgUnits, chartConfig]);
+    }, [dataItems, periods, orgUnits, summary]);
 
     return (
         <Card className="w-full max-w-4xl">
@@ -53,6 +47,7 @@ export const DHIS2Chart = memo(function DHIS2Chart({ dataItems, periods, orgUnit
 
                 {pageMode === PageModes.COMPLETE && (
                     <ChartContent
+                        summary={summary}
                         dataItems={dataItems}
                         periods={periods}
                         orgUnits={orgUnits}
