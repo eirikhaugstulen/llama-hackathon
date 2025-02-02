@@ -38,6 +38,7 @@ export async function AppSidebar({ className, ...props }: React.ComponentProps<t
             </SidebarHeader>
             <SidebarContent>
                 <DashboardsGroup />
+                
                 <RecentCreationsGroup />
             </SidebarContent>
             <SidebarFooter />

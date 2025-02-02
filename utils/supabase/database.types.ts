@@ -10,6 +10,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      indicators: {
+        Row: {
+          created_at: string
+          displayName: string
+          embedding: string | null
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          displayName: string
+          embedding?: string | null
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          displayName?: string
+          embedding?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
       visualizations: {
         Row: {
           created_at: string
@@ -39,6 +60,28 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      find_indicators:
+        | {
+            Args: {
+              query_embedding: string
+            }
+            Returns: {
+              id: string
+              displayname: string
+              created_at: string
+            }[]
+          }
+        | {
+            Args: {
+              query_embedding: string
+              match_threshold: number
+              match_count: number
+            }
+            Returns: {
+              id: string
+              displayname: string
+            }[]
+          }
       generateid: {
         Args: Record<PropertyKey, never>
         Returns: string
